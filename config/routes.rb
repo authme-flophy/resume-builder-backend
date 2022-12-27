@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :job_experiences
   resources :schools
   resources :positions
   resources :programming_languages
