@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :schools
   resources :positions
   resources :programming_languages
-  resources :users
+  resources :users, only: [:index]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -11,4 +11,6 @@ Rails.application.routes.draw do
 
   post "/login", to: 'sessions#create'
   delete "/logout", to: 'sessions#destroy'
+  post "/register", to: 'users#create'
+  get "/me", to: 'users#show'
 end
