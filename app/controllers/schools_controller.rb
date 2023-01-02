@@ -1,4 +1,5 @@
 class SchoolsController < ApplicationController
+  before_action :authenticate_request
   before_action :set_school, only: %i[ show update destroy ]
 
   # GET /schools
@@ -15,13 +16,18 @@ class SchoolsController < ApplicationController
 
   # POST /schools
   def create
-    @school = School.new(school_params)
-
-    if @school.save
-      render json: @school, status: :created, location: @school
-    else
-      render json: @school.errors, status: :unprocessable_entity
-    end
+    user_id = authenticate_request.id
+    school = School.create!(
+      name: params[:name],
+      course_name: params[:course_name],
+      start_year: params[:start_year],
+      end_year: params[:end_year],
+      resume_id: params[:resume_id],
+      user_id: user_id
+    )
+    render json: school, status: :created
+  rescue ActiveRecord::RecordInvalid => invalid
+    render json: { errors: "did not work" }, status: :unprocessable_entity
   end
 
   # PATCH/PUT /schools/1

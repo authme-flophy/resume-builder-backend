@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_27_091049) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_30_085921) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -45,7 +45,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_091049) do
     t.integer "start_year"
     t.integer "end_year"
     t.integer "resume_id"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -53,7 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_091049) do
   create_table "positions", force: :cascade do |t|
     t.string "name"
     t.integer "resume_id"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -65,13 +63,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_27_091049) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "resumes", force: :cascade do |t|
+    t.string "first_name"
+    t.string "second_name"
+    t.string "email"
+    t.string "image_url"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "schools", force: :cascade do |t|
     t.string "course_name"
     t.string "name"
     t.integer "start_year"
     t.integer "end_year"
     t.integer "resume_id"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

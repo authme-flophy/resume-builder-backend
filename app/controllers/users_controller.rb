@@ -1,13 +1,22 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_request, only: [:create, :index]
+
+
   def index
     users = User.all
     render json: users
   end
 
   def show
-    user = User.find_by(id: session[:user_id])
+    user = User.find(authenticate_request.id)
     if user
-      render json: user
+      render json: { user: {
+        id: user.id,
+        first_name: user.first_name,
+        second_name: user.second_name,
+        email: user.email,
+        image_url: user.image.url
+      }}
     else
       render json: { errors: "Not authorized" }, status: :unauthorized
     end
@@ -17,8 +26,17 @@ class UsersController < ApplicationController
     puts user_params
     user = User.create!(user_params)
     if user.valid?
-      session[:user_id] = user.id
-      render json: user, status: :created
+      token = jwt_encode(user_id: user.id)
+      render json: { 
+        user: {
+          first_name: user.first_name,
+          second_name: user.second_name,
+          username: user.username,
+          email: user.email,
+          image_url: user.image.url
+        },
+        token: token
+       }, status: :created
     else
       render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
