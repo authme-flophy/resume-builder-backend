@@ -16,18 +16,16 @@ class SchoolsController < ApplicationController
 
   # POST /schools
   def create
-    user_id = authenticate_request.id
     school = School.create!(
       name: params[:name],
       course_name: params[:course_name],
       start_year: params[:start_year],
       end_year: params[:end_year],
-      resume_id: params[:resume_id],
-      user_id: user_id
+      resume_id: params[:resume_id]
     )
     render json: school, status: :created
   rescue ActiveRecord::RecordInvalid => invalid
-    render json: { errors: "did not work" }, status: :unprocessable_entity
+    render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end
 
   # PATCH/PUT /schools/1
@@ -52,6 +50,6 @@ class SchoolsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def school_params
-      params.permit(:course_name, :name, :start_year, :end_year, :resume_id, :user_id)
+      params.permit(:course_name, :name, :start_year, :end_year, :resume_id)
     end
 end

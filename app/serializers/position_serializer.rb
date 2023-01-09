@@ -1,3 +1,3 @@
 class PositionSerializer < ActiveModel::Serializer
-  attributes :id, :name, :resume_id, :user_id
+  attributes :id, :name, :resume_id
 end

@@ -11,12 +11,9 @@ class ProgrammingLanguagesController < ApplicationController
   end
 
   def create
-    @programming_language = ProgrammingLanguage.new(programming_language_params)
-
-    if @programming_language.save
-      render json: @programming_language, status: :created
-    else
-      render json: @programming_language.errors, status: :unprocessable_entity
+    user_languages = params["languages"].split(",")
+    user_languages.each do |language|
+      ProgrammingLanguage.create!(language_name: language, resume_id: params[:resume_id])
     end
   end
 
@@ -36,10 +33,6 @@ class ProgrammingLanguagesController < ApplicationController
 
   def set_programming_language
     @programming_language = ProgrammingLanguage.find(params[:id])
-  end
-
-  def programming_language_params
-    params.permit(:language_name, :resume_id)
   end
 
 end

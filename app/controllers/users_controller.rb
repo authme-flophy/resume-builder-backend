@@ -21,6 +21,15 @@ class UsersController < ApplicationController
       render json: { errors: "Not authorized" }, status: :unauthorized
     end
   end
+
+  def profile
+    user = User.find(authenticate_request.id)
+    if user
+      render json: user, serializer: ProfileUserSerializer
+    else
+      render json: { errors: "Not authorized" }, status: :unauthorized
+    end
+  end
   
   def create
     puts user_params
