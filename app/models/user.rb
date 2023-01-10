@@ -8,5 +8,5 @@ class User < ApplicationRecord
   has_many :programming_languages, through: :resumes
   has_many :job_experiences, through: :resumes
   has_many :schools, through: :resumes
-  has_many :positions, through: :resumes
+  has_one :position, dependent: :destroy
 end

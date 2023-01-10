@@ -14,6 +14,7 @@ class UsersController < ApplicationController
         id: user.id,
         first_name: user.first_name,
         second_name: user.second_name,
+        username: user.username,
         email: user.email,
         image_url: user.image.url
       }}

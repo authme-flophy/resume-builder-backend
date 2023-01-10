@@ -18,7 +18,7 @@ class PositionsController < ApplicationController
   def create
     position = Position.create!(
       name: params[:name],
-      resume_id: params[:resume_id]
+      user_id: params[:user_id]
     )    
     render json: position, status: :created
   rescue ActiveRecord::RecordInvalid => invalid
@@ -47,6 +47,6 @@ class PositionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def position_params
-      params.permit(:name, :resume_id)
+      params.permit(:name, :user_id)
     end
 end
