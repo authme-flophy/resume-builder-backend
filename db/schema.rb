@@ -9,7 +9,8 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema[7.0].define(version: 2022_12_22_191820) do
+
+ActiveRecord::Schema[7.0].define(version: 2023_01_09_083641) do
   create_table "job_experiences", force: :cascade do |t|
     t.string "title"
     t.string "company_name"
@@ -31,21 +32,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_22_191820) do
 
   create_table "programming_languages", force: :cascade do |t|
     t.string "language_name"
-    t.integer "resume_id"
+    t.integer "user_id", null: false
+    t.integer "resume_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["resume_id"], name: "index_programming_languages_on_resume_id"
+    t.index ["user_id"], name: "index_programming_languages_on_user_id"
   end
 
   create_table "resumes", force: :cascade do |t|
     t.string "first_name"
     t.string "second_name"
     t.string "email"
-    t.string "title"
-    t.string "summary"
-    t.string "university"
+    t.string "description"
+    t.string "image_url"
     t.integer "user_id"
-    t.integer "programming_language_id"
-    t.string "work_experience"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -70,4 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_22_191820) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "programming_languages", "resumes"
+  add_foreign_key "programming_languages", "users"
 end
