@@ -7,6 +7,16 @@ class UsersController < ApplicationController
     render json: users
   end
 
+  def profiler
+    # http://localhost:4000/prospects
+    user = User.find_by(username: params[:username])
+    if user
+      render json: user
+    else
+      render json: { error: "User does not exist" }
+    end
+  end
+
   def show
     user = User.find(authenticate_request.id)
     if user

@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   delete "/logout", to: 'sessions#destroy'
   post "/register", to: 'users#create'
   get "/me", to: 'users#show'
+  get "/:username", to: 'users#profiler'
   get "/superme", to: "users#profile"
 end
