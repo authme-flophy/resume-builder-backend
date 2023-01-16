@@ -1,4 +1,5 @@
 class SchoolsController < ApplicationController
+  before_action :authenticate_request
   before_action :set_school, only: %i[ show update destroy ]
 
   # GET /schools
@@ -15,13 +16,16 @@ class SchoolsController < ApplicationController
 
   # POST /schools
   def create
-    @school = School.new(school_params)
-
-    if @school.save
-      render json: @school, status: :created, location: @school
-    else
-      render json: @school.errors, status: :unprocessable_entity
-    end
+    school = School.create!(
+      name: params[:name],
+      course_name: params[:course_name],
+      start_year: params[:start_year],
+      end_year: params[:end_year],
+      resume_id: params[:resume_id]
+    )
+    render json: school, status: :created
+  rescue ActiveRecord::RecordInvalid => invalid
+    render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end
 
   # PATCH/PUT /schools/1
@@ -46,6 +50,6 @@ class SchoolsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def school_params
-      params.require(:school).permit(:course_name, :name, :start_year, :end_year, :resume_id, :user_id)
+      params.permit(:course_name, :name, :start_year, :end_year, :resume_id)
     end
 end

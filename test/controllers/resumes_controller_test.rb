@@ -12,7 +12,7 @@ class ResumesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create resume" do
     assert_difference("Resume.count") do
-      post resumes_url, params: { resume: { description: @resume.description, email: @resume.email, first_name: @resume.first_name, image_url: @resume.image_url, second_name: @resume.second_name, user_id: @resume.user_id } }, as: :json
+      post resumes_url, params: { resume: { email: @resume.email, first_name: @resume.first_name, image_url: @resume.image_url, second_name: @resume.second_name, user_id: @resume.user_id } }, as: :json
     end
 
     assert_response :created
@@ -24,7 +24,8 @@ class ResumesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update resume" do
-    patch resume_url(@resume), params: { resume: { description: @resume.description, email: @resume.email, first_name: @resume.first_name, image_url: @resume.image_url, second_name: @resume.second_name, user_id: @resume.user_id } }, as: :json
+    patch resume_url(@resume), params: { resume: { email: @resume.email, first_name: @resume.first_name, image_url: @resume.image_url, second_name: @resume.second_name, user_id: @resume.user_id } }, as: :json
+
     assert_response :success
   end
 

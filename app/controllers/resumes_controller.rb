@@ -1,4 +1,5 @@
 class ResumesController < ApplicationController
+  before_action :authenticate_request
   before_action :set_resume, only: %i[ show update destroy ]
 
   # GET /resumes
@@ -15,13 +16,17 @@ class ResumesController < ApplicationController
 
   # POST /resumes
   def create
-    @resume = Resume.new(resume_params)
-
-    if @resume.save
-      render json: @resume, status: :created, location: @resume
-    else
-      render json: @resume.errors, status: :unprocessable_entity
-    end
+    user_id = authenticate_request.id
+    resume = Resume.create!(
+      first_name: params[:first_name],
+      second_name: params[:second_name],
+      email: params[:email],
+      image_url: params[:image_url],
+      user_id: user_id
+    )
+    render json: resume, status: :created
+  rescue ActiveRecord::RecordInvalid => invalid
+    render json: { errors: "did not work" }, status: :unprocessable_entity
   end
 
   # PATCH/PUT /resumes/1
@@ -46,6 +51,6 @@ class ResumesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def resume_params
-      params.require(:resume).permit(:first_name, :second_name, :email, :description, :image_url, :user_id)
+      params.permit(:first_name, :second_name, :email, :image_url, :user_id)
     end
 end

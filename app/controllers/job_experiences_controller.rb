@@ -46,6 +46,6 @@ class JobExperiencesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def job_experience_params
-      params.permit(:title, :company_name, :start_year, :end_year, :resume_id, :user_id)
+      params.permit(:title, :company_name, :start_year, :summary, :end_year, :resume_id, :user_id)
     end
 end

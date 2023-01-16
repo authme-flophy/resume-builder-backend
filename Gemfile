@@ -14,6 +14,10 @@ gem "puma", "~> 5.0"
 
 gem "active_model_serializers"
 
+gem 'jwt'
+
+gem "cloudinary"
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 

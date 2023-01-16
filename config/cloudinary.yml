@@ -1,0 +1,18 @@
+development:
+  cloud_name: "dfdxhrjcc"
+  api_key: "528388792963434"
+  api_secret: "3POJtNdNdZcoVGsrmUMK_PEhscM"
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: "dfdxhrjcc"
+  api_key: "528388792963434"
+  api_secret: "3POJtNdNdZcoVGsrmUMK_PEhscM"
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: "dfdxhrjcc"
+  api_key: "528388792963434"
+  api_secret: "3POJtNdNdZcoVGsrmUMK_PEhscM"
+  enhance_image_tag: true
+  static_file_support: false

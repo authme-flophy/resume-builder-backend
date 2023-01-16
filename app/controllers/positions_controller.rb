@@ -1,4 +1,5 @@
 class PositionsController < ApplicationController
+  before_action :authenticate_request
   before_action :set_position, only: %i[ show update destroy ]
 
   # GET /positions
@@ -15,13 +16,13 @@ class PositionsController < ApplicationController
 
   # POST /positions
   def create
-    @position = Position.new(position_params)
-
-    if @position.save
-      render json: @position, status: :created, location: @position
-    else
-      render json: @position.errors, status: :unprocessable_entity
-    end
+    position = Position.create!(
+      name: params[:name],
+      user_id: params[:user_id]
+    )    
+    render json: position, status: :created
+  rescue ActiveRecord::RecordInvalid => invalid
+    render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end
 
   # PATCH/PUT /positions/1
@@ -46,6 +47,6 @@ class PositionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def position_params
-      params.permit(:name, :resume_id, :user_id)
+      params.permit(:name, :user_id)
     end
 end
