@@ -1,0 +1,16 @@
+current directory: /home/dan/group-project/resume-builder-backend/vendor/bundle/ruby/3.1.0/gems/debug-1.7.0/ext/debug
+/usr/share/rvm/rubies/ruby-3.1.2/bin/ruby -I /usr/share/rvm/rubies/ruby-3.1.2/lib/ruby/site_ruby/3.1.0 extconf.rb
+creating Makefile
+
+current directory: /home/dan/group-project/resume-builder-backend/vendor/bundle/ruby/3.1.0/gems/debug-1.7.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20230109-21703-a1lkoc sitelibdir\=./.gem.20230109-21703-a1lkoc clean
+
+current directory: /home/dan/group-project/resume-builder-backend/vendor/bundle/ruby/3.1.0/gems/debug-1.7.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20230109-21703-a1lkoc sitelibdir\=./.gem.20230109-21703-a1lkoc
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/dan/group-project/resume-builder-backend/vendor/bundle/ruby/3.1.0/gems/debug-1.7.0/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20230109-21703-a1lkoc sitelibdir\=./.gem.20230109-21703-a1lkoc install
+/bin/install -m 0755 debug.so ./.gem.20230109-21703-a1lkoc/debug

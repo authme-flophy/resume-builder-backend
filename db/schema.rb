@@ -59,15 +59,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_081841) do
 
   create_table "programming_languages", force: :cascade do |t|
     t.string "language_name"
-    t.integer "resume_id"
+    t.integer "user_id", null: false
+    t.integer "resume_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["resume_id"], name: "index_programming_languages_on_resume_id"
+    t.index ["user_id"], name: "index_programming_languages_on_user_id"
   end
 
   create_table "resumes", force: :cascade do |t|
     t.string "first_name"
     t.string "second_name"
     t.string "email"
+    t.string "description"
     t.string "image_url"
     t.integer "user_id"
     t.datetime "created_at", null: false
