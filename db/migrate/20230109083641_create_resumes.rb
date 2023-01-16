@@ -7,6 +7,9 @@ class CreateResumes < ActiveRecord::Migration[7.0]
       t.string :description
       t.string :image_url
       t.integer :user_id
+      t.string :linkedin
+      t.string :github
+      t.string :portfolio
 
       t.timestamps
     end
