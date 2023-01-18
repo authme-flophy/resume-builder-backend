@@ -1,6 +1,6 @@
 class ProgrammingLanguagesController < ApplicationController
   before_action :set_programming_language, only: %i[ show update destroy ]
-  
+
   def index
     programming_languages = ProgrammingLanguage.all
     render json: programming_languages
@@ -24,7 +24,8 @@ class ProgrammingLanguagesController < ApplicationController
       render json: @programming_language.errors, status: :unprocessable_entity
     end
   end
-
+  
+  # DELETE /programming_languages/1
   def destroy
     @programming_language.destroy
   end
@@ -34,5 +35,4 @@ class ProgrammingLanguagesController < ApplicationController
   def set_programming_language
     @programming_language = ProgrammingLanguage.find(params[:id])
   end
-
 end

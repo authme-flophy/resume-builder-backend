@@ -25,6 +25,7 @@ class ResumesControllerTest < ActionDispatch::IntegrationTest
 
   test "should update resume" do
     patch resume_url(@resume), params: { resume: { email: @resume.email, first_name: @resume.first_name, image_url: @resume.image_url, second_name: @resume.second_name, user_id: @resume.user_id } }, as: :json
+
     assert_response :success
   end
 

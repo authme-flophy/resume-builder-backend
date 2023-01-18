@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   before_action :authenticate_request, except: :create
 
   # POST /auth/login
@@ -22,21 +21,5 @@ class SessionsController < ApplicationController
       render json: { error: 'unauthorized' }, status: :unauthorized
     end
   end
-
-
-  # def create
-    #   user = User.find_by(username: params[:username])
-    #   if user&.authenticate(params[:password])
-    #     token = encode_user_data(user_data: user.id)
-    #     render json: {token: token}, status: :created
-    #   else
-    #     render json: { errors: ["Invalid username or password"] }, status: :unauthorized
-    #   end
-    # end
-  
-    def destroy
-        session.delete(:user_id)
-        head :no_content, status: :no_content
-    end
   
   end

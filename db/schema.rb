@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_11_081841) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_18_072518) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -59,17 +59,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_081841) do
 
   create_table "programming_languages", force: :cascade do |t|
     t.string "language_name"
-    t.integer "resume_id"
+    t.integer "resume_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["resume_id"], name: "index_programming_languages_on_resume_id"
   end
 
   create_table "resumes", force: :cascade do |t|
     t.string "first_name"
     t.string "second_name"
     t.string "email"
+    t.string "description"
     t.string "image_url"
     t.integer "user_id"
+    t.string "linkedin"
+    t.string "github"
+    t.string "portfolio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -96,4 +101,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_081841) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "programming_languages", "resumes"
 end
