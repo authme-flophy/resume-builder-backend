@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
       token = jwt_encode(user_id: user.id)
       render json: { 
         user: {
+          id: user.id,
           first_name: user.first_name,
           second_name: user.second_name,
           username: user.username,
