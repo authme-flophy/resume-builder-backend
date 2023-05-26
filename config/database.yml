@@ -14,8 +14,8 @@ development:
   database: resumeBuilder_development
   host: localhost
   port: 5432
-  username: postgres
-  password: prospect***101
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_PASS"] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -25,8 +25,8 @@ test:
   database: resumeBuilder_test
   host: localhost
   port: 5432
-  username: postgres
-  password: prospect***101
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_PASS"] %>
 
 production:
   <<: *default
