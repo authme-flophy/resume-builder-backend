@@ -22,6 +22,10 @@ class ResumesController < ApplicationController
       second_name: params[:second_name],
       email: params[:email],
       image_url: params[:image_url],
+      description: params[:description],
+      github: params[:github],
+      linkedin: params[:linkedin],
+      portfolio: params[:portfolio],
       user_id: user_id
     )
     render json: resume, status: :created
@@ -51,6 +55,6 @@ class ResumesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def resume_params
-      params.permit(:first_name, :second_name, :email, :image_url, :user_id)
+      params.permit(:first_name, :second_name, :email, :image_url, :description, :github, :linkedin, :portfolio, :user_id)
     end
 end

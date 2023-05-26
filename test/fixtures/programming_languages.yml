@@ -2,10 +2,8 @@
 
 one:
   language_name: MyString
-  user: one
-  resume: one
+  resume_id: 1
 
 two:
   language_name: MyString
-  user: two
-  resume: two
+  resume_id: 1
