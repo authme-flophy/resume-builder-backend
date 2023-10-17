@@ -3,7 +3,7 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.hosts << "resume-builder-production.up.railway.app"
+  config.hosts << "resume-builder-v7jb.onrender.com"
 
 
   # In the development environment your application's code is reloaded any time
