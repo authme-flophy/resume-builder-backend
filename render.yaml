@@ -8,6 +8,7 @@ services:
   - type: web
     name: resume_builder
     env: ruby
+    plan: free
     buildCommand: "./render-build.sh"
     startCommand: "bundle exec rails s"
     envVars:
