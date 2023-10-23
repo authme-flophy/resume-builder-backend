@@ -1,5 +1,6 @@
 databases:
   - name: postgres
+    plan: free
     ipAllowList: []
     databaseName: resume_builder
     user: resume_builder
