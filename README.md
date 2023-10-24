@@ -41,12 +41,12 @@ To run this backend application locally or set up your own instance:
 
 1. Clone the repository from GitHub:
    ```
-   git clone [repository_url]
+   git clone git@github.com:authme-flophy/resume-builder-backend.git
    ```
 
 2. Navigate to the project directory:
    ```
-   cd backend
+   cd resume-builder-backend
    ```
 
 3. Install the required gems:
